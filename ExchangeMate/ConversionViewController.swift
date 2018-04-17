@@ -6,7 +6,6 @@
 //  Copyright © 2018 Ross Maniaci. All rights reserved.
 //
 
-// Conversion View Controller digits
 // Conversion View Controller text field
 // Test calculation
 // UI Tests
@@ -38,7 +37,7 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
         
         // Initialize the conversion text field.
         self.conversionField.delegate = self
-        self.conversionField.text = "0.00"
+        self.conversionField.text = ""
         self.conversionField.keyboardType = UIKeyboardType.decimalPad
         conversionButton.layer.cornerRadius = 5
     }
@@ -48,7 +47,7 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    // Require conversionField to allow a maximum of ten digits and two decimal places as part of currency format.
+    // Require conversionField to allow a maximum of two decimal places as part of currency format.
     func textField(_ conversionField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         // Capture the text in the field.
         let newText = (conversionField.text! as NSString).replacingCharacters(in: range, with: string)
@@ -93,15 +92,29 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
     
     // Convert dollar input to displayed currency based on the exchange rate.
     @IBAction func conversion(sender: UIButton) {
-        let currency = Double(conversionField.text!)
-        
-        // Clear the conversion text field.
-        conversionField.text = "0.00"
-        conversionField .resignFirstResponder()
-        
-        // Multiply the amount to be converted by the exchange rate and display it in the conversion label.
-        let exchange = Double(exchangeLabel.text!)
-        let conversion = (currency! * exchange!)
-        conversionLabel.text = "\(conversion)"
+        if (self.conversionField.text != "") {
+            let currency = Double(conversionField.text!)
+            
+            // Clear the conversion text field.
+            conversionField.text = ""
+            conversionField .resignFirstResponder()
+            
+            // Multiply the amount to be converted by the exchange rate and display it in the conversion label.
+            let exchange = Double(exchangeLabel.text!)
+            let conversion = String(format: "%.2f", (currency! * exchange!))
+            
+            // Limit the conversion label to 18 digits including the decimal place for readability purposes.
+            if conversion.count <= 18 {
+                conversionLabel.text = conversion
+            }
+            
+            else {
+                let alertController = UIAlertController(title: "Error", message:
+                    "Please enter a smaller dollar amount", preferredStyle: UIAlertControllerStyle.alert)
+                alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default,handler: nil))
+                
+                self.present(alertController, animated: true, completion: nil)
+            }
+        }
     }
 }

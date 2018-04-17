@@ -16,6 +16,8 @@
 		32541BE820830356009CF273 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32541BE620830356009CF273 /* LaunchScreen.storyboard */; };
 		32541BF320830357009CF273 /* ExchangeMateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32541BF220830357009CF273 /* ExchangeMateTests.swift */; };
 		32541BFE20830357009CF273 /* ExchangeMateUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32541BFD20830357009CF273 /* ExchangeMateUITests.swift */; };
+		3255BE9D20863D5A00CF4E4A /* LICENSE.md in Resources */ = {isa = PBXBuildFile; fileRef = 3255BE9C20863D5A00CF4E4A /* LICENSE.md */; };
+		3255BE9F20863D6100CF4E4A /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 3255BE9E20863D6100CF4E4A /* README.md */; };
 		47AFB3C7A8EE021161F5E3AB /* Pods_ExchangeMateUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6FF6B473A39A99B20948D8E /* Pods_ExchangeMateUITests.framework */; };
 		EA3A110531BB7C015A72DCD8 /* Pods_ExchangeMateTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83A6E9CCE81F0A77E6953A09 /* Pods_ExchangeMateTests.framework */; };
 /* End PBXBuildFile section */
@@ -55,6 +57,8 @@
 		32541BF920830357009CF273 /* ExchangeMateUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExchangeMateUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		32541BFD20830357009CF273 /* ExchangeMateUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeMateUITests.swift; sourceTree = "<group>"; };
 		32541BFF20830357009CF273 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3255BE9C20863D5A00CF4E4A /* LICENSE.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
+		3255BE9E20863D6100CF4E4A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		36843A57DCE927F0B89CBB4B /* Pods-ExchangeMateUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ExchangeMateUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ExchangeMateUITests/Pods-ExchangeMateUITests.release.xcconfig"; sourceTree = "<group>"; };
 		83A6E9CCE81F0A77E6953A09 /* Pods_ExchangeMateTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExchangeMateTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6FF6B473A39A99B20948D8E /* Pods_ExchangeMateUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ExchangeMateUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -94,6 +98,8 @@
 		32541BD120830356009CF273 = {
 			isa = PBXGroup;
 			children = (
+				3255BE9C20863D5A00CF4E4A /* LICENSE.md */,
+				3255BE9E20863D6100CF4E4A /* README.md */,
 				32541BDC20830356009CF273 /* ExchangeMate */,
 				32541BF120830357009CF273 /* ExchangeMateTests */,
 				32541BFC20830357009CF273 /* ExchangeMateUITests */,
@@ -276,7 +282,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3255BE9D20863D5A00CF4E4A /* LICENSE.md in Resources */,
 				32541BE820830356009CF273 /* LaunchScreen.storyboard in Resources */,
+				3255BE9F20863D6100CF4E4A /* README.md in Resources */,
 				32541BE520830356009CF273 /* Assets.xcassets in Resources */,
 				32541BE320830356009CF273 /* Main.storyboard in Resources */,
 			);
