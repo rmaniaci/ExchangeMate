@@ -21,6 +21,8 @@ class CurrenciesViewController: UITableViewController {
     
     // Using viewWillAppear allows for the latest currency rates to be displayed every time CurrenciesViewController appears.
     override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        self.title = "ExchangeMate"
         let appId = "c59e6006363347f9962ed7e969680ba7" // API key assumed to be constant.
         
         // Alamofire replaces NSURLSession and SwiftyJSON replaces NSJSONSerialization for purposes of efficiency.

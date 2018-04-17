@@ -10,42 +10,13 @@ The user then selects a currency from the table and opens up a second screen sho
 
 This program was developed with iOS version 11.3, Xcode version 9.3, and Swift 4.
 
-First navigate to the RMSpellChecker folder inside the RMSpellChecker project.
+Cocoapods is used for dependency management.
+Alamofire is used for HTTP networking.
+SwiftyJSON is used for JSON networking.
 
-```
-/path/to/the/files/RMSpellChecker/RMSpellChecker
-```
+Be sure to open the .xcworkspace rather than the .xcodeproj in order to compile and run the project.
 
-Compile the program using Clang by entering the following command.
-
-```
-$ clang -fobjc-arc -framework Foundation main.m RMSpellChecker.m -o RMSpellChecker
-```
-
-To run the program using the given format (echo and pipe) enter the following command.
-
-```
-$ echo 'misspelledword' | ./RMSpellChecker
-correctlyspelledword
-```
-
-If the program cannot find a correctly spelled suggestion, it will return "NO SUGGESTION".
-
-## Tests
-
-This program was tested with developed with iOS version 11.3, Xcode version 9.3, and Swift 4.
-
-First navigate to the RMSpellChecker project.
-
-```
-/path/to/the/files/RMSpellChecker/
-```
-
-To run unit tests from the command line using the xctest framework, enter the following command:
-
-```
-$ xcodebuild test -project RMSpellChecker.xcodeproj -scheme RMSpellChecker -destination 'platform=OS X,arch=x86_64'
-```
+Fill in the appID variable with your own API key.
 
 ## License
 

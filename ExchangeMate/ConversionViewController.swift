@@ -6,11 +6,6 @@
 //  Copyright © 2018 Ross Maniaci. All rights reserved.
 //
 
-// Conversion View Controller text field
-// Test calculation
-// UI Tests
-// GitHub
-
 import UIKit
 
 class ConversionViewController: UIViewController, UITextFieldDelegate {
