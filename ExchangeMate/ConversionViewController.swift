@@ -9,14 +9,16 @@
 import UIKit
 
 class ConversionViewController: UIViewController, UITextFieldDelegate {
+    // Declare variables that are passed from the CurrenciesViewController.
     var name: String!
     var exchangeRate: Double!
     
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var exchangeLabel: UILabel!
-    @IBOutlet weak var conversionField: UITextField!
-    @IBOutlet weak var conversionLabel: UILabel!
-    @IBOutlet weak var conversionButton: UIButton!
+    // Declare outlets for view controller.
+    @IBOutlet weak var nameLabel: UILabel! // Name of currency
+    @IBOutlet weak var exchangeLabel: UILabel! // Exchange rate
+    @IBOutlet weak var conversionField: UITextField! // Amount in dollars to be converted
+    @IBOutlet weak var conversionLabel: UILabel! // Amount converted from dollars to currency
+    @IBOutlet weak var conversionButton: UIButton! // Triggers an IBAction that converts dollars to currency
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -103,13 +105,21 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
                 conversionLabel.text = conversion
             }
             
-            else {
+            else { // For purposes of fitting conversion in label
                 let alertController = UIAlertController(title: "Error", message:
                     "Please enter a smaller dollar amount", preferredStyle: UIAlertControllerStyle.alert)
                 alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default,handler: nil))
                 
                 self.present(alertController, animated: true, completion: nil)
             }
+        }
+        
+        else { // Nothing entered into UITextField.
+            let alertController = UIAlertController(title: "Error", message:
+                "Please enter a dollar amount", preferredStyle: UIAlertControllerStyle.alert)
+            alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default,handler: nil))
+            
+            self.present(alertController, animated: true, completion: nil)
         }
     }
 }

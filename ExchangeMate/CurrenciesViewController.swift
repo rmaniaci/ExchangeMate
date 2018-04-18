@@ -15,14 +15,14 @@ class CurrenciesViewController: UITableViewController {
     var exchangeDictionary = [String: Double]() // Declare an array of type Dictionary to provide currency values for keys.
     var dateString: String! // The date is constant between cells so it does not need to be in an array or dictionary.
     
+    // Use viewDidLoad in this case because it is assumed that the API key is used on the Developer Plan for this application.
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-    // Using viewWillAppear allows for the latest currency rates to be displayed every time CurrenciesViewController appears.
-    override func viewWillAppear(_ animated: Bool) {
+        
+        // Clean up the navigation bar.
         self.navigationController?.navigationBar.tintColor = UIColor.white
         self.title = "ExchangeMate"
+        
         let appId = "c59e6006363347f9962ed7e969680ba7" // API key assumed to be constant.
         
         // Alamofire replaces NSURLSession and SwiftyJSON replaces NSJSONSerialization for purposes of efficiency.
@@ -44,18 +44,16 @@ class CurrenciesViewController: UITableViewController {
                     self.exchangeDictionary[key] = value.doubleValue
                 }
                 
+                // Sort the array of currencies by dictionary key in alphabetical order.
                 let jsonArray = [String](self.exchangeDictionary.keys)
                 self.nameArray = jsonArray.sorted(by: <)
-                
-                // Sort the array of currencies by dictionary key in alphabetical order.
-                
                 
                 // Reload tableView with currency names and rates.
                 if self.nameArray.count > 0 {
                     self.tableView.reloadData()
                 }
             }
-            
+                
             else { // Alert user when unable to connect to server
                 let alertController = UIAlertController(title: "Error", message:
                     "Unable to connect to server", preferredStyle: UIAlertControllerStyle.alert)
@@ -64,13 +62,16 @@ class CurrenciesViewController: UITableViewController {
                 self.present(alertController, animated: true, completion: nil)
             }
         }
-        
-        super.viewWillAppear(animated)
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    // Resets the title to ExchangeMate when coming from the Conversion View Controller.
+    override func viewWillAppear(_ animated: Bool) {
+        self.title = "ExchangeMate"
     }
 
     // MARK: - Table view data source
@@ -85,18 +86,12 @@ class CurrenciesViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath) as! CustomCell
-
-        // Create single object arrays corresponding to the dictionary key and value.
-        // let cellDictionary = currencyArray[indexPath.row]
-        // let namesArray = [String](cellDictionary.keys)
-        // let exchangesArray = [Double](cellDictionary.values)
         
         // Configure the CustomCell.
         self.tableView.rowHeight = 84
         let name = nameArray[indexPath.row]
         cell.nameLabel?.text = name
         cell.dateLabel?.text = dateString // Date is constant regardless of currency because it is retrieved from timestamp.
-        // cell.exchangeLabel.text = (String)(exchangesArray[0])
         let exchangeRate = (exchangeDictionary[name])
         cell.exchangeLabel.text = (String)(exchangeRate!)
         
@@ -105,20 +100,21 @@ class CurrenciesViewController: UITableViewController {
     
     // MARK: - Navigation
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) { // Equivalent of didSelectRowAtIndexPath
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) { // Equivalent of didSelectRowAtIndexPath.
         let selectedIndex = self.tableView.indexPath(for: sender as! CustomCell)
         let name = nameArray[(selectedIndex?.row)!]
         let exchangeRate = (exchangeDictionary[name])
         let conversionController = segue.destination as! ConversionViewController
+        
+        // Pass name and exchange rate to Conversion View Controller.
         conversionController.name = name
         conversionController.exchangeRate = exchangeRate!
-        // conversionController.cellDictionary = cellDictionary // Pass the Dictionary object to the ConversionViewController
     }
 }
 
 // Declare name, date, and exchange rate labels for custom UITableViewCell.
 class CustomCell: UITableViewCell {
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var exchangeLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel! // Name of currency
+    @IBOutlet weak var dateLabel: UILabel! // Date exchange rates fetched from API.
+    @IBOutlet weak var exchangeLabel: UILabel! // Exchange rate of currency
 }
