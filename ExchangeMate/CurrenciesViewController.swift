@@ -12,7 +12,7 @@ import SwiftyJSON
 
 class CurrenciesViewController: UITableViewController {
     var dateString: String! // The date is constant between cells so it does not need to be in an array or dictionary.
-    var currencyArray = [Currency]()
+    var currencyArray = [Currency]() // Declare an array of Currency structures.
     
     // Use viewDidLoad in this case because it is assumed that the API key is used on the Developer Plan for this application.
     override func viewDidLoad() {
@@ -67,7 +67,7 @@ class CurrenciesViewController: UITableViewController {
                 }
             }
                 
-            else { // Alert user when unable to connect to server
+            else { // Alert user when unable to connect to server.
                 let alertController = UIAlertController(title: "Error", message:
                     "Unable to connect to server", preferredStyle: UIAlertControllerStyle.alert)
                 alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default,handler: nil))
@@ -97,17 +97,13 @@ class CurrenciesViewController: UITableViewController {
     
     // MARK: - Navigation
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) { // Equivalent of didSelectRowAtIndexPath.
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Equivalent of didSelectRowAtIndexPath.
         let selectedIndex = self.tableView.indexPath(for: sender as! CustomCell)
-        // let name = nameArray[(selectedIndex?.row)!]
         let aCurrency = currencyArray[(selectedIndex?.row)!]
         
-        // let exchangeRate = (exchangeDictionary[name])
+        // Pass selected currency to Conversion View Controller.
         let conversionController = segue.destination as! ConversionViewController
-        
-        // Pass name and exchange rate to Conversion View Controller.
-        // conversionController.name = name
-        // conversionController.exchangeRate = exchangeRate!
         conversionController.currency = aCurrency
     }
 }

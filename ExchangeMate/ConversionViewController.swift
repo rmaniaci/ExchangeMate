@@ -9,7 +9,7 @@
 import UIKit
 
 class ConversionViewController: UIViewController, UITextFieldDelegate {
-    // Declare variables that are passed from the CurrenciesViewController.
+    // Currency that is passed from the CurrenciesViewController.
     var currency: Currency!
     
     // Declare outlets for view controller.
@@ -103,7 +103,7 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
                 conversionLabel.text = conversion
             }
             
-            else { // For purposes of fitting conversion in label
+            else { // For purposes of fitting conversion in label.
                 let alertController = UIAlertController(title: "Error", message:
                     "Please enter a smaller dollar amount", preferredStyle: UIAlertControllerStyle.alert)
                 alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default,handler: nil))
