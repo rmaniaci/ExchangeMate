@@ -11,5 +11,6 @@ import UIKit
 // A simple structure that represents a currency based on names and exchange rates fetched from the OpenExchange API.
 struct Currency {
     let name: String
+    let dateString: String
     let exchangeRate: Double
 }

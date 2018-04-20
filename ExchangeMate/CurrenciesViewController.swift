@@ -11,8 +11,8 @@ import Alamofire
 import SwiftyJSON
 
 class CurrenciesViewController: UITableViewController {
-    var dateString: String! // The date is constant between cells so it does not need to be in an array or dictionary.
     var currencyArray = [Currency]() // Declare an array of Currency structures.
+    // let networkingLayer = NetworkingLayer()
     
     // Use viewDidLoad in this case because it is assumed that the API key is used on the Developer Plan for this application.
     override func viewDidLoad() {
@@ -34,7 +34,8 @@ class CurrenciesViewController: UITableViewController {
     
     // Resets the title to ExchangeMate when coming from the Conversion View Controller.
     override func viewWillAppear(_ animated: Bool) {
-        self.title = "ExchangeMate"
+        // self.title = "ExchangeMate"
+        super .viewWillAppear(animated)
     }
     
     // Alamofire replaces NSURLSession and SwiftyJSON replaces NSJSONSerialization for purposes of efficiency.
@@ -49,14 +50,14 @@ class CurrenciesViewController: UITableViewController {
                 let dateFormatter = DateFormatter()
                 dateFormatter.timeZone = TimeZone(abbreviation: "GMT")
                 dateFormatter.dateFormat = "MM/dd/yyyy"
-                self.dateString = dateFormatter.string(from: date)
+                let dateString = dateFormatter.string(from: date)
                 
                 // Retrieve currency names and exchange rates.
                 let ratesJSON = JSON(swiftyJSON["rates"])
                 var jsonArray = [Currency]()
                 
                 for (key, value) in ratesJSON {
-                    let aCurrency = Currency(name: key, exchangeRate: value.doubleValue)
+                    let aCurrency = Currency(name: key, dateString:dateString, exchangeRate: value.doubleValue)
                     jsonArray.append(aCurrency)
                 }
                 
@@ -87,11 +88,11 @@ class CurrenciesViewController: UITableViewController {
         return currencyArray.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> CustomCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath) as! CustomCell
         self.tableView.rowHeight = 84
         let aCurrency = currencyArray[indexPath.row]
-        cell.configure(name: aCurrency.name, dateString: dateString, exchangeString: ((String)(aCurrency.exchangeRate)))
+        cell.configure(name: aCurrency.name, dateString: aCurrency.dateString, exchangeString: ((String)(aCurrency.exchangeRate)))
         return cell
     }
     
@@ -105,19 +106,5 @@ class CurrenciesViewController: UITableViewController {
         // Pass selected currency to Conversion View Controller.
         let conversionController = segue.destination as! ConversionViewController
         conversionController.currency = aCurrency
-    }
-}
-
-// Declare name, date, and exchange rate labels for custom UITableViewCell.
-class CustomCell: UITableViewCell {
-    @IBOutlet weak var nameLabel: UILabel! // Name of currency
-    @IBOutlet weak var dateLabel: UILabel! // Date exchange rates fetched from API.
-    @IBOutlet weak var exchangeLabel: UILabel! // Exchange rate of currency
-    
-    // Configure the CustomCell.
-    func configure (name: String, dateString: String, exchangeString: String) {
-        nameLabel?.text = name
-        dateLabel?.text = dateString // Date is constant regardless of currency because it is retrieved from timestamp.
-        exchangeLabel.text = exchangeString
     }
 }
