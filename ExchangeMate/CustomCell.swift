@@ -2,7 +2,7 @@
 //  CustomCell.swift
 //  ExchangeMate
 //
-//  Created by Ross Maniaci on 4/20/18.
+//  Created by Ross Maniaci on 4/14/18.
 //  Copyright © 2018 Ross Maniaci. All rights reserved.
 //
 
