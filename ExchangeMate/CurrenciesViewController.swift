@@ -12,7 +12,6 @@ import SwiftyJSON
 
 class CurrenciesViewController: UITableViewController {
     var currencyArray = [Currency]() // Declare an array of Currency structures.
-    // let networkingLayer = NetworkingLayer()
     
     // Use viewDidLoad in this case because it is assumed that the API key is used on the Developer Plan for this application.
     override func viewDidLoad() {
