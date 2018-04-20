@@ -23,8 +23,22 @@ class CurrenciesViewController: UITableViewController {
         self.navigationController?.navigationBar.tintColor = UIColor.white
         self.title = "ExchangeMate"
         
-        let appId = "c59e6006363347f9962ed7e969680ba7" // API key assumed to be constant.
-        
+        // API key assumed to be constant.
+        let appId = "c59e6006363347f9962ed7e969680ba7"
+        fetchCurrencyData(appId: appId)
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    // Resets the title to ExchangeMate when coming from the Conversion View Controller.
+    override func viewWillAppear(_ animated: Bool) {
+        self.title = "ExchangeMate"
+    }
+    
+    func fetchCurrencyData(appId: String) {
         // Alamofire replaces NSURLSession and SwiftyJSON replaces NSJSONSerialization for purposes of efficiency.
         Alamofire.request("https://openexchangerates.org/api/latest.json?app_id=\(appId)").responseJSON { (responseData) -> Void in
             if ((responseData.result.value) != nil) {
@@ -63,16 +77,6 @@ class CurrenciesViewController: UITableViewController {
             }
         }
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    // Resets the title to ExchangeMate when coming from the Conversion View Controller.
-    override func viewWillAppear(_ animated: Bool) {
-        self.title = "ExchangeMate"
-    }
 
     // MARK: - Table view data source
 
@@ -90,10 +94,8 @@ class CurrenciesViewController: UITableViewController {
         // Configure the CustomCell.
         self.tableView.rowHeight = 84
         let name = nameArray[indexPath.row]
-        cell.nameLabel?.text = name
-        cell.dateLabel?.text = dateString // Date is constant regardless of currency because it is retrieved from timestamp.
         let exchangeRate = (exchangeDictionary[name])
-        cell.exchangeLabel.text = (String)(exchangeRate!)
+        cell.configure(name: name, dateString: dateString, exchangeString: ((String)(exchangeRate!)))
         
         return cell
     }
@@ -117,4 +119,11 @@ class CustomCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel! // Name of currency
     @IBOutlet weak var dateLabel: UILabel! // Date exchange rates fetched from API.
     @IBOutlet weak var exchangeLabel: UILabel! // Exchange rate of currency
+    
+    // Configure the CustomCell.
+    func configure (name: String, dateString: String, exchangeString: String) {
+        nameLabel?.text = name
+        dateLabel?.text = dateString // Date is constant regardless of currency because it is retrieved from timestamp.
+        exchangeLabel.text = exchangeString
+    }
 }
