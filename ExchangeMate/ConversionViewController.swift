@@ -10,8 +10,7 @@ import UIKit
 
 class ConversionViewController: UIViewController, UITextFieldDelegate {
     // Declare variables that are passed from the CurrenciesViewController.
-    var name: String!
-    var exchangeRate: Double!
+    var currency: Currency!
     
     // Declare outlets for view controller.
     @IBOutlet weak var nameLabel: UILabel! // Name of currency
@@ -26,11 +25,11 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
         // Clean up the navigation bar.
         self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController!.navigationBar.topItem!.title = ""
-        self.title = name
+        self.title = currency.name
         
         // Populate the name and the exchange labels.
-        nameLabel.text = name
-        exchangeLabel.text = (String)(exchangeRate)
+        nameLabel.text = currency.name
+        exchangeLabel.text = (String)(currency.exchangeRate)
         
         // Initialize the conversion text field.
         self.conversionField.delegate = self
@@ -90,15 +89,14 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
     // Convert dollar input to displayed currency based on the exchange rate.
     @IBAction func conversion(sender: UIButton) {
         if (self.conversionField.text != "") {
-            let currency = Double(conversionField.text!)
+            let dollar = Double(conversionField.text!)
             
             // Clear the conversion text field.
             conversionField.text = ""
             conversionField .resignFirstResponder()
             
             // Multiply the amount to be converted by the exchange rate and display it in the conversion label.
-            let exchange = Double(exchangeLabel.text!)
-            let conversion = String(format: "%.2f", (currency! * exchange!))
+            let conversion = String(format: "%.2f", (dollar! * (currency.exchangeRate)))
             
             // Limit the conversion label to 18 digits including the decimal place for readability purposes.
             if conversion.count <= 18 {
