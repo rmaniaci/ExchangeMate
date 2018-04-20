@@ -17,7 +17,7 @@ class CurrenciesViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Clean up the navigation bar.
+        // Clean up the navigation bar for consistency.
         self.navigationController?.navigationBar.tintColor = UIColor.white
         self.title = "ExchangeMate"
         
