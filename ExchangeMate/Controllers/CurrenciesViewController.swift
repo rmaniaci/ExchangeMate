@@ -33,7 +33,7 @@ class CurrenciesViewController: UITableViewController {
     
     // Resets the title to ExchangeMate when coming from the Conversion View Controller.
     override func viewWillAppear(_ animated: Bool) {
-        self.title = "ExchangeMate"
+        self.title = "Currencies"
         super .viewWillAppear(animated)
     }
     

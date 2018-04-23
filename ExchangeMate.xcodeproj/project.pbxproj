@@ -99,6 +99,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		143A8FA5208E259300167D70 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				32535D5E2083EF7B00ECB587 /* CurrenciesViewController.swift */,
+				32535D5A2083EDA200ECB587 /* ConversionViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		143A8FA6208E25B900167D70 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				14463DC7208A574B00588811 /* Currency.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		143A8FA7208E25CA00167D70 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				14463DC9208A66F200588811 /* CustomCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		143A8FA8208E25D700167D70 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				32541BE620830356009CF273 /* LaunchScreen.storyboard */,
+				32541BE120830356009CF273 /* Main.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
 		32541BD120830356009CF273 = {
 			isa = PBXGroup;
 			children = (
@@ -127,12 +161,10 @@
 			isa = PBXGroup;
 			children = (
 				32541BDD20830356009CF273 /* AppDelegate.swift */,
-				32535D5E2083EF7B00ECB587 /* CurrenciesViewController.swift */,
-				32535D5A2083EDA200ECB587 /* ConversionViewController.swift */,
-				14463DC7208A574B00588811 /* Currency.swift */,
-				14463DC9208A66F200588811 /* CustomCell.swift */,
-				32541BE620830356009CF273 /* LaunchScreen.storyboard */,
-				32541BE120830356009CF273 /* Main.storyboard */,
+				143A8FA6208E25B900167D70 /* Models */,
+				143A8FA7208E25CA00167D70 /* Views */,
+				143A8FA5208E259300167D70 /* Controllers */,
+				143A8FA8208E25D700167D70 /* Storyboards */,
 				32541BE420830356009CF273 /* Assets.xcassets */,
 				32541BE920830356009CF273 /* Info.plist */,
 			);
