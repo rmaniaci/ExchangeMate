@@ -17,6 +17,9 @@ class CurrenciesViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Change the status bar color to white.
+        UIApplication.shared.statusBarStyle = .lightContent
+        
         // Clean up the navigation bar for consistency.
         self.navigationController?.navigationBar.tintColor = UIColor.white
         self.title = "ExchangeMate"
