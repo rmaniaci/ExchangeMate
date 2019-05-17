@@ -72,8 +72,8 @@ class CurrenciesViewController: UITableViewController {
                 
             else { // Alert user when unable to connect to server.
                 let alertController = UIAlertController(title: "Error", message:
-                    "Unable to connect to server", preferredStyle: UIAlertControllerStyle.alert)
-                alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default,handler: nil))
+                    "Unable to connect to server", preferredStyle: UIAlertController.Style.alert)
+                alertController.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default,handler: nil))
                 
                 self.present(alertController, animated: true, completion: nil)
             }

@@ -105,8 +105,8 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
             
             else { // For purposes of fitting conversion in label.
                 let alertController = UIAlertController(title: "Error", message:
-                    "Please enter a smaller dollar amount", preferredStyle: UIAlertControllerStyle.alert)
-                alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default,handler: nil))
+                    "Please enter a smaller dollar amount", preferredStyle: UIAlertController.Style.alert)
+                alertController.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default,handler: nil))
                 
                 self.present(alertController, animated: true, completion: nil)
             }
@@ -114,8 +114,8 @@ class ConversionViewController: UIViewController, UITextFieldDelegate {
         
         else { // Nothing entered into UITextField.
             let alertController = UIAlertController(title: "Error", message:
-                "Please enter a dollar amount", preferredStyle: UIAlertControllerStyle.alert)
-            alertController.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default,handler: nil))
+                "Please enter a dollar amount", preferredStyle: UIAlertController.Style.alert)
+            alertController.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default,handler: nil))
             
             self.present(alertController, animated: true, completion: nil)
         }
